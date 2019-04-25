@@ -1,0 +1,8 @@
+# Ignore File Name `README.txt`
+README.txt
+
+# Ignore folders
+node_modules/
+
+# Ignore all .exe files
+#    *.exe

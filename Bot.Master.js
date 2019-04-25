@@ -1,4 +1,4 @@
-const Discord = require();
+const Discord = require('discord.js');
 const client = new Discord.Client();            // Create an instance of a Discord client
 const config = require('./config.json');
 const  {Client, Attachment, RichEmbed} = require('discord.js');
