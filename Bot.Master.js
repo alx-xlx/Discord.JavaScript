@@ -2,7 +2,7 @@ const Discord = require('discord.js');          // Get the library
 const client = new Discord.Client();            // Create an instance of a Discord client
 const config = require('./config.json');
 const  {Client, Attachment, RichEmbed} = require('discord.js');
-//const client = new client();//
+//const client = new client();
 const fs = require ('fs');
 
 client.login(config.token);            //Reads the token from config.json
