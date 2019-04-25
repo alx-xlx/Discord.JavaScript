@@ -1,0 +1,12 @@
+{
+    "welcome" : ["Hello", "welcome to our Server Krux Community"],
+    "log" : "1",
+    "prefix" : "-",
+    "token" : "your bot token",
+    "meaning_of_life" : 42,
+    "passwords_array" : ["please", "don't", "hack", "me", "or", "i", "will", "hack", "you!"],
+    "secret_passcodes" : {
+    "bank" : 1234,"home" : 4321
+    },
+    "Testube":{"online":0}
+}

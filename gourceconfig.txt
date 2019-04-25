@@ -1,0 +1,7 @@
+[display]
+fullscreen=true
+
+[gource]
+camera-mode=overview
+realtime=true
+
