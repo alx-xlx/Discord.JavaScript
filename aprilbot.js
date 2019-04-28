@@ -1,7 +1,9 @@
 const config = require("./config.json");
 const Discord = require('discord.js');
 const get = require('./get');
-const fs = require("fs");                                                   //Filesystem
+const fs = require("fs");
+const superagent = require('superagent');
+const sql = require('sqlite');
 const  {Client, Attachment, RichEmbed} = require('discord.js');
 const bot = new Discord.Client({disableEveryone: true});
 const mysql = require('mysql');
@@ -9,7 +11,7 @@ bot.commands = new Discord.Collection();
 bot.login(config.token);              
 bot.on('error', console.error);
 
-const superagent = require('superagent');
+sql.open("userData.sqlite");
 
 
 fs.readdir("./commands", (err, files) => {                                  //Reading Folder commands
@@ -209,6 +211,24 @@ bot.on("message" , async message => {
             message.delete();
         }
     }
+
+    sql.get(`SELECT * FROM userData WHERE userId ="${message.author.id}"`).then(row => {
+        if (!row) {
+            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, sender.username, 0, 0, 0]);
+        }
+    }).catch(() => {
+        console.error;
+        sql.run("CREATE TABLE IF NOT EXISTS userData (userId TEXT, username TEXT, level INTEGER, money INTEGER, time INTEGER)").then(() => {
+            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, sender.username, 0, 0, 0]);
+        });
+    });
+
+
+
+
+
+
+
 });
 
 bot.on('guildMemberAdd', async member => {
