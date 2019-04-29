@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "sqlite": "^3.0.3"
+    "sqlite": "^3.0.3",
+    "superagent": "^5.0.4"
   }
 }

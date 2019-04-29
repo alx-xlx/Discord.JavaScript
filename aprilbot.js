@@ -1,12 +1,12 @@
 const config = require("./config.json");
 const Discord = require('discord.js');
-const get = require('./get');
+//const get = require('./get');
 const fs = require("fs");
 const superagent = require('superagent');
 const sql = require('sqlite');
 const  {Client, Attachment, RichEmbed} = require('discord.js');
 const bot = new Discord.Client({disableEveryone: true});
-const mysql = require('mysql');
+//const mysql = require('mysql');
 bot.commands = new Discord.Collection();
 bot.login(config.token);              
 bot.on('error', console.error);
