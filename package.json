@@ -2,9 +2,12 @@
   "name": "discord.javascript",
   "version": "1.0.0",
   "description": "",
-  "main": "Bot.Master.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": ["config.json", "files/*.json"]
   },
   "author": "",
   "license": "ISC",
