@@ -223,6 +223,11 @@ bot.on("message" , async message => {
         });
     });
 
+    if (cmd == `${p}sql`) {
+        sql.get(`SELECT username,money FROM userData ORDER BY username`).then(rows => { 
+                message.channel.send(rows); 
+        })
+    }
 
 
 
