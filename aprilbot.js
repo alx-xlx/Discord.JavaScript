@@ -214,12 +214,12 @@ bot.on("message" , async message => {
 
     sql.get(`SELECT * FROM userData WHERE userId ="${message.author.id}"`).then(row => {
         if (!row) {
-            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, message.author.username, 0, 0, 0]);
+            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, message.author.username, 0, 1, 0]);
         }
     }).catch(() => {
         console.error;
         sql.run("CREATE TABLE IF NOT EXISTS userData (userId TEXT, username TEXT, level INTEGER, money INTEGER, time INTEGER)").then(() => {
-            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, message.author.username, 0, 0, 0]);
+            sql.run("INSERT INTO userData (userId, username, level, money, time) VALUES (?, ?, ?, ?, ?)", [message.author.id, message.author.username, 0, 2, 0]);
         });
     });
 
