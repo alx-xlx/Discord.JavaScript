@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
         let {body} = await superagent
         .get(`https://newsapi.org/v2/top-headlines?country=${countryID}&apiKey=e2364d9cbd2b49eabf55ffed4fc447f5`);
         let newsembed = new Discord.RichEmbed()
-        .setTitle(`**Top 5 News From ${countryID}**`)
+        .setTitle(`**Top 10 News From ${countryID}**`)
         .setColor('#ffffff')
         .addField('#1',body.articles[0].title)
         .addField('#2',body.articles[1].title)
@@ -23,9 +23,9 @@ module.exports.run = async (bot, message, args) => {
         .addField('#9',body.articles[8].title)
         .addField('#10',body.articles[9].title);
         message.channel.send(newsembed);
-    } else {
+    } else if(!countryID) {
         let newsembed2 = new Discord.RichEmbed()
-        .setTitle(`**Top 5 News From India**`)
+        .setTitle(`**Top 10 News From India**`)
         .setColor('#ffffff')
         .addField('#1',body.articles[0].title)
         .addField('#2',body.articles[1].title)
@@ -38,6 +38,12 @@ module.exports.run = async (bot, message, args) => {
         .addField('#9',body.articles[8].title)
         .addField('#10',body.articles[9].title);
         message.channel.send(newsembed2);
+    } else if(countryID == 'help') {
+        let helpembed = new Discord.RichEmbed()
+        .setTitle(`**Country Codes**`)
+        .setColor('#aaaaaa')
+        .addField('#1','This is me !');
+        message.channel.send(helpembed);
     }
 }
 
