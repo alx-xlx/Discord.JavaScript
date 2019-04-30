@@ -39,11 +39,11 @@ module.exports.run = async (bot, message, args) => {
         .addField('#10',body.articles[9].title);
         message.channel.send(newsembed2);
     } else if(countryID == 'help') {
-        let helpembed = new Discord.RichEmbed()
-        .setTitle(`**Country Codes**`)
-        .setColor('#aaaaaa')
-        .addField('#1','This is me !');
-        message.channel.send(helpembed);
+        // let helpembed = new Discord.RichEmbed()
+        // .setTitle(`**Country Codes**`)
+        // .setColor('#aaaaaa')
+        // .addField('#1','This is me !');
+        message.channel.send("helpembed");
     }
 }
 
