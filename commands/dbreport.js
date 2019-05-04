@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {                            
     .then(msg => console.log(`${message.author.username}reported${rUser.user.username}||Deleted report message`))   //Delete the message from the channel    
     .catch(console.error);                                                                                          //Send error report if any to console
     reportschannel.send(reportembed);
-}
+
 
 const report = new Report({
     _id: mongoose.Types.ObjectId(),
@@ -44,7 +44,7 @@ report.save()
 .catch(err => console.log(err));
 
 message.reply('Report saved in Database')
-
+}
 module.exports.help = {
     name: "dbreport"
 }
