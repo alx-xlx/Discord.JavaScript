@@ -39,6 +39,12 @@ const report = new Report({
     time: message.createdAt
 });
 
+report.save()
+.then(result => console.log(result))
+.catch(err => console.log(err));
+
+message.reply('Report saved in Database')
+
 module.exports.help = {
     name: "dbreport"
 }
