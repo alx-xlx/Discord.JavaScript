@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {                            
     let reportschannel = message.guild.channels.find(`name`, "bot_spam");                                                   //Find a channel name report
     if(!reportschannel) return message.channel.send("Could'nt find report Channel !");
     message.delete()                                                           
-    .then(msg => console.log(`${message.author.username}reported${rUser.user.username}||Deleted report message`))   //Delete the message from the channel    
+    .then(msg => console.log(`${message.author.username} reported ${rUser.user.username}||Deleted report message`))   //Delete the message from the channel    
     .catch(console.error);                                                                                          //Send error report if any to console
     reportschannel.send(reportembed);
 
