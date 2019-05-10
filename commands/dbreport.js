@@ -4,7 +4,6 @@ const Report = require('../module/reports.js');
 
 
 
-
 module.exports.run = async (bot, message, args) => {                                //#1 exported "bot,message,args"
     console.log("Report Command Loaded");
     mongoose.connect('mongodb://localhost/Reports');
@@ -27,23 +26,22 @@ module.exports.run = async (bot, message, args) => {                            
     .then(msg => console.log(`${message.author.username} reported ${rUser.user.username}||Deleted report message`))   //Delete the message from the channel    
     .catch(console.error);                                                                                          //Send error report if any to console
     reportschannel.send(reportembed);
+    
+    
+    const report = new Report({
+        _id: mongoose.Types.ObjectId(),
+        username: rUser.user.username,
+        userID: rUser.id,
+        reason: rreason,
+        rUsername: message.author.username,
+        rID: message.author.id,
+        time: message.createdAt
+    });
 
-
-const report = new Report({
-    _id: mongoose.Types.ObjectId(),
-    username: rUser.user.username,
-    userID: rUser.id,
-    reason: rreason,
-    rUsername: message.author.username,
-    rID: message.author.id,
-    time: message.createdAt
-});
-
-report.save()
-.then(result => console.log(result))
-.catch(err => console.log(err));
-
-message.reply('Report saved in Database')
+    report.save()
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
+    message.reply('Report saved in Database')
 }
 module.exports.help = {
     name: "dbreport"
