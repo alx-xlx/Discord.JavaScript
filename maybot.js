@@ -5,6 +5,11 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const superagent = require('superagent');
 const sql = require('sqlite');
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost:27017/Coins", {
+    useNewUrlParser: true
+});
+const Money = require('./module/money.js');;
 const  {Client, Attachment, RichEmbed} = require('discord.js');
 const bot = new Discord.Client({disableEveryone: true});
 //const mysql = require('mysql');
