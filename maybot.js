@@ -22,16 +22,7 @@ sql.open("userData.sqlite");
 
 
 
-function play(connection,message) {
-    var server = servers[message.guild.id];
-    server.dispatcher = connection.playStream(YTDL(server.queue[0],{filter: "audioonly"}));
-    server.queue.shift();
-    server.dispatcher.on('end', function() {
-        if(server.queue[0]) play(connection,message);
-        else connection.disconnect();
-    });
-}
-var servers = {};
+
 
 
 
@@ -113,6 +104,18 @@ bot.on("ready", async () =>  {
 //     return Math.floor(Math.random() * (max - min + 1)) + min;
 // }
 
+const commands = {
+	'join': (message) => {
+        message.channel.send('Jaeaaefsefsefsef')
+	}
+	// 'help': (msg) => {
+	// 	let tosend = ['```xl', tokens.prefix + 'join : "Join Voice channel of msg sender"',	tokens.prefix + 'add : "Add a valid youtube link to the queue"', tokens.prefix + 'queue : "Shows the current queue, up to 15 songs shown."', tokens.prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), tokens.prefix + 'pause : "pauses the music"',	tokens.prefix + 'resume : "resumes the music"', tokens.prefix + 'skip : "skips the playing song"', tokens.prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
+	// 	msg.channel.sendMessage(tosend.join('\n'));
+	// },
+	// 'reboot': (msg) => {
+	// 	if (msg.author.id == tokens.adminID) process.exit(); //Requires a node module like Forever to work.
+	// }
+};
 
 bot.on("message" , async message => {
     if(message.author.bot) return;                                         //If author of msg is BOT then quit
@@ -145,8 +148,9 @@ bot.on("message" , async message => {
         });
     }
 
-
-
+    if (commands.hasOwnProperty(message.content.toLowerCase().slice(config.prefix.length).split(' ')[0])) {
+		commands[message.content.toLowerCase().slice(config.prefix.length).split(' ')[0]](message);
+	}
 
     // con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`,(err,rows) => {
     //     if(err) return err;
@@ -235,27 +239,7 @@ bot.on("message" , async message => {
 
 
 
-    if (messageArray[0] == 'listen' && !messageArray[1]) {
-        message.channel.send('Please provide the Song');
-        return;
-    }
-    if(!message.member.voiceChannel) {
-        message.channel.send('Join a Voice Channel');   
-        return;
-    }
-    if(!servers[message.guild.id]) servers[message.guild.id] = {
-        queue: []
-    };
-    var server = servers[message.guild.id];
-    server.queue.push(messageArray[1]);
 
-    if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-        play(connection,message);    
-    });
-    if(messageArray[0] == 'quit') {
-        var server = servers[message.guild.id];
-        if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-    }
 
 
 
@@ -314,7 +298,7 @@ bot.on("message" , async message => {
 
 
 
-});
+}); //BOT.ON(MESSAGE)
 
 bot.on('guildMemberAdd', async member => {
     let welcomeChannel = member.guild.channels.find(`name`, 'logs');
