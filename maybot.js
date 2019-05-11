@@ -1,6 +1,7 @@
 //aprilbot copied to maybot.js
 const config = require("./config.json");
 const Discord = require('discord.js');
+const YTDL = require('ytdl-core');
 //const get = require('./get');
 const fs = require('fs');
 const superagent = require('superagent');
@@ -19,7 +20,17 @@ bot.on('error', console.error);
 
 sql.open("userData.sqlite");
 
+function play(connection,message) {
+    var server = servers[message.guild.id];
+    server.dispatcher = connection.playStream(YTDL(server.queue[0],{filter: "audioonly"}));
 
+    server.queue.shift();
+    server.dispatcher.on('end', function() {
+        if(server.queue[0]) play(connection,message);
+        else connection.disconnect();
+    });
+}
+var servers = {};
 fs.readdir("./commands", (err, files) => {                                  //Reading Folder commands
     if(err) {
         console.log(err);
@@ -213,6 +224,32 @@ bot.on("message" , async message => {
             message.channel.send(dogembed);
             message.delete(5000);
         }
+    }
+
+    if (messageArray[0] == 'listen' && !messageArray[1]) {
+        message.channel.send('Please provide the Song');
+        return;
+    }
+
+    if(!message.member.voiceChannel) {
+        message.channel.send('Join a Voice Channel');   
+        return;
+    }
+    if(!servers[message.guild.id]) servers[message.guild.id] = {
+        queue: []
+    };
+
+    var server = servers[message.guild.id];
+    server.queue.push(messageArray[1]);
+
+    if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+        play(connection,message);    
+    });
+
+
+    if(messageArray[0] == 'quit') {
+        var server = servers[message.guild.id];
+        if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
 
     if(messageArray[0] == 'pls' && messageArray[1] == 'embed') {
