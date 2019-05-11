@@ -20,10 +20,11 @@ bot.on('error', console.error);
 
 sql.open("userData.sqlite");
 
+
+
 function play(connection,message) {
     var server = servers[message.guild.id];
     server.dispatcher = connection.playStream(YTDL(server.queue[0],{filter: "audioonly"}));
-
     server.queue.shift();
     server.dispatcher.on('end', function() {
         if(server.queue[0]) play(connection,message);
@@ -31,6 +32,10 @@ function play(connection,message) {
     });
 }
 var servers = {};
+
+
+
+
 fs.readdir("./commands", (err, files) => {                                  //Reading Folder commands
     if(err) {
         console.log(err);
@@ -226,11 +231,14 @@ bot.on("message" , async message => {
         }
     }
 
+
+
+
+
     if (messageArray[0] == 'listen' && !messageArray[1]) {
         message.channel.send('Please provide the Song');
         return;
     }
-
     if(!message.member.voiceChannel) {
         message.channel.send('Join a Voice Channel');   
         return;
@@ -238,19 +246,24 @@ bot.on("message" , async message => {
     if(!servers[message.guild.id]) servers[message.guild.id] = {
         queue: []
     };
-
     var server = servers[message.guild.id];
     server.queue.push(messageArray[1]);
 
     if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
         play(connection,message);    
     });
-
-
     if(messageArray[0] == 'quit') {
         var server = servers[message.guild.id];
         if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
+
+
+
+
+
+
+
+
 
     if(messageArray[0] == 'pls' && messageArray[1] == 'embed') {
         let linky = messageArray[2];
