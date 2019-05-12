@@ -342,7 +342,11 @@ const commands = {
                         message.channel.sendMessage('paused').then(() => {
                             dispatcher.pause();
                         });
-                    } else if(m.content.sendMessage)
+                    } else if(m.content.sendMessage(config.prefix + 'resume')) {
+                        message.channel.sendMessage('resumed').then(() => {
+                            dispatcher.resume();
+                        });
+                    } else if()
                 })
             }
         })
