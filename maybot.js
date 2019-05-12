@@ -1,7 +1,7 @@
 //aprilbot copied to maybot.js
 const config = require("./config.json");
 const Discord = require('discord.js');
-const YTDL = require('ytdl-core');
+const Youtube = require('ytdl-core');
 //const get = require('./get');
 const fs = require('fs');
 const superagent = require('superagent');
@@ -19,6 +19,7 @@ bot.login(config.token);
 bot.on('error', console.error);
 
 sql.open("userData.sqlite");
+
 
 
 
@@ -104,18 +105,7 @@ bot.on("ready", async () =>  {
 //     return Math.floor(Math.random() * (max - min + 1)) + min;
 // }
 
-const commands = {
-	'join': (message) => {
-        message.channel.send('Jaeaaefsefsefsef')
-	}
-	// 'help': (msg) => {
-	// 	let tosend = ['```xl', tokens.prefix + 'join : "Join Voice channel of msg sender"',	tokens.prefix + 'add : "Add a valid youtube link to the queue"', tokens.prefix + 'queue : "Shows the current queue, up to 15 songs shown."', tokens.prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), tokens.prefix + 'pause : "pauses the music"',	tokens.prefix + 'resume : "resumes the music"', tokens.prefix + 'skip : "skips the playing song"', tokens.prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
-	// 	msg.channel.sendMessage(tosend.join('\n'));
-	// },
-	// 'reboot': (msg) => {
-	// 	if (msg.author.id == tokens.adminID) process.exit(); //Requires a node module like Forever to work.
-	// }
-};
+
 
 bot.on("message" , async message => {
     if(message.author.bot) return;                                         //If author of msg is BOT then quit
@@ -148,6 +138,7 @@ bot.on("message" , async message => {
         });
     }
 
+    // Music BOT
     if (commands.hasOwnProperty(message.content.toLowerCase().slice(config.prefix.length).split(' ')[0])) {
 		commands[message.content.toLowerCase().slice(config.prefix.length).split(' ')[0]](message);
 	}
@@ -317,3 +308,44 @@ bot.on('channelDelete', async channel => {
     sChannel.send(`**${channel.name}** Channel has been deleted`);
 });
 
+
+
+
+
+
+let queue = {};
+const commands = {
+    'play': (message) => {
+        if(queue[message.guild.id] == undefined) {
+            return message.channel.sendMessage(`Add Songs to the Queue with **${config.prefix}add**`);
+        }
+        if(!message.guild.voiceConnection) {
+            commands.join(message).then(() => commands.play(message));
+        }
+        if(queue[message.guild.id].playing) {
+            message.channel.sendMessage(`Already Playing`);
+        }
+        let dispatcher;
+        queue[message.guild.id].playing = true;
+        console.log(queue);
+        (function play(song) {
+            console.log(song);
+            if(song == undefined) {
+                message.channel.sendMessage(`Queue is Empty`).then(() => {
+                    queue[message.guild.id].playing = false;
+                    message.member.voiceChannel.leave();
+                });
+                message.channel.sendMessage(`Playing: **${song.title}** as requested by**${song.requester}**`);
+                dispatcher = message.channel.createCollector(m => m);
+                collector.on('message', m => {
+                    if(m.content.startsWith(config.prefix + 'pause')) {
+                        message.channel.sendMessage('paused').then(() => {
+                            dispatcher.pause();
+                        });
+                    } else if(m.content.sendMessage)
+                })
+            }
+        })
+
+    }
+}
