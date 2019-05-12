@@ -5,6 +5,6 @@
     "log":"1",
     "prefix":"-",
     "meaning_of_life":42,
-    "passwords_array":["please","don't","hack","me","or","i","will","hack","you!"],
+    "passwords_array":["please","don't","hack","or","i","hack","you!"],
     "secret_passcodes":{"bank":12345,"home":4321}
 }
