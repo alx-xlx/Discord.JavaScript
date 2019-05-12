@@ -75,7 +75,7 @@ bot.on("ready", async () =>  {
     configs[bot.user.username] = {
         online : nextnumber
     };
-    fs.writeFile("./config.json", JSON.stringify(configs), (err) => {
+    fs.writeFile("./config.json", JSON.stringify(configs, null, 2), (err) => {
         if(err) console.log(err); return;
     });
     botChannel.send(readyembed)
