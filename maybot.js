@@ -346,7 +346,7 @@ const commands = {
                         message.channel.sendMessage('resumed').then(() => {
                             dispatcher.resume();
                         });
-                    } else if()
+                    }
                 })
             }
         })
