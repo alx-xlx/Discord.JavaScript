@@ -16,9 +16,13 @@ module.exports.run = async (bot, message, args) => {
     .then(msg => {
         msg.delete(30000);
     });
+
+    if(message.content.startsWith('%')) {
+        message.channel.send('BIT');
+    }
     //message.channel.send(boticon);                           //This Line will print the whole image with link
 }
 
 module.exports.help = {
-    name: "bot"
+    name: "bott"
 }

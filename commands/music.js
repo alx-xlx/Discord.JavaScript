@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const YTDL = require('ytdl-core');
 
 
-module.exports.run = async (bot, message, args) => {                                
-
-
+module.exports.run = async (bot, message, args) => {
+    
+    let messageArray = message.content.split(" ");
     function play(connection,message) {
         var server = servers[message.guild.id];
         server.dispatcher = connection.playStream(YTDL(server.queue[0],{filter: "audioonly"}));
