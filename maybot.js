@@ -75,7 +75,7 @@ bot.on("ready", async () =>  {
     configs[bot.user.username] = {
         online : nextnumber
     };
-    fs.writeFile("./config.json", JSON.stringify(configs,2), 'utf-8',(err) => {
+    fs.writeFile("./config.json", JSON.stringify(configs,null,4),(err) => {
         if(err) console.log(err); return;
     });
     botChannel.send(readyembed)
@@ -346,8 +346,23 @@ const commands = {
                         message.channel.sendMessage('resumed').then(() => {
                             dispatcher.resume();
                         });
+                    } else if(m.content.startsWith(config.prefix + 'skip')) {
+                        message.channel.sendMessage('Skipped').then(() => {
+                            dispatcher.end();
+                        });
+                    } else if(m.content.startsWith('volume+')) {
+                        if(Math.round(dispatcher.volume*50) >= 100) {
+                            message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                        }
+                        dispatcher.setVolume(Math.min((dispatcher.volume*50 + (2*(m.content.split('+').length-1)))/50,2));
+                        message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                    } else if(m.content.startsWith('volume-')) {
+                        if(Math.round(dispatcher.volume*50) <= 0) {
+                            message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                        }
+                        dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
+                        message.channel.sendMessage(`Volume`)
                     }
-                })
             }
         })
 
