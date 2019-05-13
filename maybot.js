@@ -435,4 +435,5 @@ const commands = {
             process.exit(); //Requires a node module like Forever to work.
         }
     }
-}
+}; //const commands END OF LINE
+
