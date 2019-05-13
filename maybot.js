@@ -389,5 +389,33 @@ const commands = {
             voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
         });
     },
-    'add':
+    'add': (message) => {
+        let url = message.content.split(' ')[1];
+        if(url == '' || url === undefined) {
+            message.channel.sendMessage(`You must add a Youtub Link OR ID after ${config.prefix}add`);
+        }
+        Youtube.getInfo(url, (err,info) => {
+            if(!queue.hasOwnProperty(message.guild.id)) {
+                queue[message.guild.id] = {};
+                queue[message.guild.id].playing = false;
+                queue[message.guild.id].songs = [];
+            }
+            queue[message.guild.id].songs.push( {
+                url: url,
+                title: info.title,
+                requester: message.author.username
+            });
+            message.channel.sendMessage(`Added **${info.title}** to the queue`);
+        })
+    },
+    'queue': (message) => {
+        if(queue[message.guild.id] === undefined) {
+            message.channel.sendMessage(`Add some songs to the queue first with ${config.prefix}add`);
+            let tosend = [];
+            queue[message.guild.id].songs.forEach((song,i) => {
+                tosend.push(`${i+1}. ${song.title} - Requested By: ${song.requester}`);
+            });
+            message.channel.sendMessage(`__**${message}`)
+        }
+    }
 }
