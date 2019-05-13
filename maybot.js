@@ -335,36 +335,59 @@ const commands = {
                     queue[message.guild.id].playing = false;
                     message.member.voiceChannel.leave();
                 });
-                message.channel.sendMessage(`Playing: **${song.title}** as requested by**${song.requester}**`);
-                dispatcher = message.channel.createCollector(m => m);
-                collector.on('message', m => {
-                    if(m.content.startsWith(config.prefix + 'pause')) {
-                        message.channel.sendMessage('paused').then(() => {
-                            dispatcher.pause();
-                        });
-                    } else if(m.content.sendMessage(config.prefix + 'resume')) {
-                        message.channel.sendMessage('resumed').then(() => {
-                            dispatcher.resume();
-                        });
-                    } else if(m.content.startsWith(config.prefix + 'skip')) {
-                        message.channel.sendMessage('Skipped').then(() => {
-                            dispatcher.end();
-                        });
-                    } else if(m.content.startsWith('volume+')) {
-                        if(Math.round(dispatcher.volume*50) >= 100) {
-                            message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
-                        }
-                        dispatcher.setVolume(Math.min((dispatcher.volume*50 + (2*(m.content.split('+').length-1)))/50,2));
+            };
+            message.channel.sendMessage(`Playing: **${song.title}** as requested by**${song.requester}**`);
+            dispatcher = message.channel.createCollector(m => m);
+            collector.on('message', m => {
+                if(m.content.startsWith(config.prefix + 'pause')) {
+                    message.channel.sendMessage('paused').then(() => {
+                        dispatcher.pause();
+                    });
+                } else if(m.content.sendMessage(config.prefix + 'resume')) {
+                    message.channel.sendMessage('resumed').then(() => {
+                        dispatcher.resume();
+                    });
+                } else if(m.content.startsWith(config.prefix + 'skip')) {
+                    message.channel.sendMessage('Skipped').then(() => {
+                        dispatcher.end();
+                    });
+                } else if(m.content.startsWith('volume+')) {
+                    if(Math.round(dispatcher.volume*50) >= 100) {
                         message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
-                    } else if(m.content.startsWith('volume-')) {
-                        if(Math.round(dispatcher.volume*50) <= 0) {
-                            message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
-                        }
-                        dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
-                        message.channel.sendMessage(`Volume`)
                     }
+                    dispatcher.setVolume(Math.min((dispatcher.volume*50 + (2*(m.content.split('+').length-1)))/50,2));
+                    message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                } else if(m.content.startsWith('volume-')) {
+                    if(Math.round(dispatcher.volume*50) <= 0) {
+                        message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                    }
+                    dispatcher.setVolume(Math.max((dispatcher.volume*50 - (2*(m.content.split('-').length-1)))/50,0));
+                    message.channel.sendMessage(`Volume - ${Math.round(dispatcher.volume*50)}%`);
+                } else if(m.content.startsWith(config.prefix + 'time')) {
+                    message.channel.sendMessage(`time ${Math.floor(dispatcher.time / 6000)} : ${Math.floor((dispatcher.time % 60000)/1000) <10 ? '0' + Math.floor((dispatcher.time % 60000)/1000) : Math.floor((dispatcher.time % 60000)/1000)}`);
+                }
+            });
+            dispatcher.on('end', () => {
+                collector.stop();
+                play(queue[message.guild.id].songs.shift());
+            });
+            dispatcher.on('error', (err) => {
+                message.channel.sendMessage('error: ' + err).then(() => {
+                    collector.stop();
+                    play(queue[message.guild.id].songs.shift());
+                });
+            })
+        });
+        (queue[message.guild.id].songs.shift());
+    },
+    'join': (message) => {
+        return new Promise((resolve,reject) => {
+            const voiceChannel = message.member.voiceChannel;
+            if(!voiceChannel || voiceChannel.type !== 'voice') {
+                message.reply(`I couldn't  connect to Your Channel`);
             }
-        })
-
-    }
+            voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
+        });
+    },
+    'add':
 }
