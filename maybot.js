@@ -411,11 +411,12 @@ const commands = {
     'queue': (message) => {
         if(queue[message.guild.id] === undefined) {
             message.channel.sendMessage(`Add some songs to the queue first with ${config.prefix}add`);
-            let tosend = [];
-            queue[message.guild.id].songs.forEach((song,i) => {
-                tosend.push(`${i+1}. ${song.title} - Requested By: ${song.requester}`);
-            });
-            message.channel.sendMessage(`__**${message.guild.name}'s Music Queue:**__ Current** ${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')} \n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
         }
-    }
+        let tosend = [];
+        queue[message.guild.id].songs.forEach((song,i) => {
+            tosend.push(`${i+1}. ${song.title} - Requested By: ${song.requester}`);
+        });
+        message.channel.sendMessage(`__**${message.guild.name}'s Music Queue:**__ Current** ${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')} \n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
+    },
+    
 }
