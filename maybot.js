@@ -430,5 +430,9 @@ const commands = {
         + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
         message.channel.sendMessage(tosend.join('\n'));
     },
-    'reboot': (message)
+    'reboot': (message) => {
+        if(message.author.id == config.adminID) {
+            process.exit(); //Requires a node module like Forever to work.
+        }
+    }
 }
