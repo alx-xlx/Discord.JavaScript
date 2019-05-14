@@ -3,5 +3,5 @@ fullscreen=true
 
 [gource]
 camera-mode=overview
-realtime=true
-
+realtime=false
+auto-skip-seconds=1
