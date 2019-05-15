@@ -6,7 +6,6 @@ node_modules/
 
 AWS.Hosting/
 
-/crypt/
 
 # Ignore all .exe files
 #    *.exe

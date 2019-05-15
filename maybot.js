@@ -1,5 +1,5 @@
 //aprilbot copied to maybot.js
-const config = require("config.json");
+const config = require("./config.json");
 const Discord = require('discord.js');
 const Youtube = require('ytdl-core');
 //const get = require('./get');
