@@ -11,6 +11,8 @@
 [FrameWork](Vue)        \\Intensive.
 [Hosting](AWS)      \\Only upto free limit.
 
+2. Lets Leave this POINT BLANK !!
 
+# ChangeLogs
 [For_Rough_Changelogs_Goto](https://trello.com/b/Yd6ZV3i6/pclinguapublic)(ToDo)
 
