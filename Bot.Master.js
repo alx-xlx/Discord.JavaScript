@@ -22,7 +22,7 @@ client.on('message', async msg => {
         msg.reply(msg.author.displayAvatarURL);
     }
     else if (msg.content == '-rip') {
-      //  const attachment = new Attachment ('https://i.imgur.com/w3duR07.png');    // Sending Attachment using URL
+      //  const attachment = new Attachment ('URL.png');    // Sending Attachment using URL
         const attachment1 = new Attachment ('./files/me.png')                           //Sending attachment from local
       //  msg.channel.send(msg.author, attachment);
         msg.channel.send(attachment1);
