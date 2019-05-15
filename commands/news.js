@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
         
     } catch (error) {
         console.log(error);
-        message.channel.send('Wrong Country Code')
+        message.channel.send('Wrong Country Code');
     }
 }
 
