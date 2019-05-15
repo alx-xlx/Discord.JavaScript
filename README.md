@@ -5,8 +5,8 @@
 # Aim
 1. Introducing Yourself to the basics of :
 
-[Bot_Development](JavaScript_+_nodejs)      \\Normal Bot + Music Bot
-[DataBase](mongoDB_+_mySQL)
+[Bot_Development](JavaScript_+_nodejs)      \\Normal Bot + [Music] Bot.
+[DataBase](mongoDB_+_mySQL)     \\Storing [Bot] and [User] Data with Encryption.
 [WebPage_for_Bot](HTML_+_CSS)
 [FrameWork](Vue)
 
