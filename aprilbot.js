@@ -33,7 +33,7 @@ fs.readdir("./commands", (err, files) => {                                  //Re
 
 bot.on("ready", async () =>  {
     console.log(`\x1b[1m\x1b[34mTest\x1b[31mube\x1b[31m\x1b[0m\x1b[1m is\x1b[32m online!\x1b[0m`);                        //Logs on the console window
-    var botChannel = bot.channels.get("548555442771591178");
+    var botChannel = bot.channels.get(`${config._CH}`);
     let configs = JSON.parse(fs.readFileSync("./config.json"));
     var number = configs.Testube.online;
     var nextnumber = number;
