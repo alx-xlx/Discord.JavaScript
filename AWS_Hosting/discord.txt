@@ -3,4 +3,4 @@ forever start janbot.js
 forever stop janbot.js
 
 
-/testing.
+/tester
