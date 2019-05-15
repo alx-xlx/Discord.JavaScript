@@ -6,9 +6,9 @@
 1. Introducing Yourself to the basics of :
 
 [Bot_Development](JavaScript_+_nodejs)      \\Normal Bot + [Music] Bot.
-[DataBase](mongoDB_+_mySQL)     \\Storing [Bot] and [User] Data with Encryption.
-[WebPage_for_Bot](HTML_+_CSS)
-[FrameWork](Vue)
+[DataBase](mongoDB_+_mySQL_+_bycrpt)     \\Storing [Bot] and [User] Data with Encryption.
+[WebPage_for_Bot](HTML_+_CSS)       \\Web Development Simply Basics.
+[FrameWork](Vue)        \\Intensive.
 
 
 [For_Rough_Changelogs_Goto](https://trello.com/b/Yd6ZV3i6/pclinguapublic)(ToDo)
