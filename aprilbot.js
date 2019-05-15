@@ -143,7 +143,7 @@ bot.on("message" , async message => {
     }
 
     if(cmd == `${p}pic`) {
-        const attachment = new Attachment ('https://i.imgur.com/w3duR07.png');    // Sending Attachment using URL
+        const attachment = new Attachment (`${config.bot.rip}`);    // Sending Attachment using URL
         //const attachment1 = new Attachment ('./files/me.png')                           //Sending attachment from local
         message.channel.send(attachment);
         //message.channel.send(attachment1);
@@ -151,7 +151,7 @@ bot.on("message" , async message => {
 
     if(messageArray[0] == 'pls' && messageArray[1] =='cat') {
         let {body} = await superagent
-        .get('http://aws.random.cat/meow');
+        .get(`${config.bot.cat}`);
         let linky = body.file;
         let mp4 = linky.search('.mp4');
         if(mp4 != -1) {
