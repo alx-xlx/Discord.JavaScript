@@ -1,12 +1,34 @@
 {
-    "welcome" : ["Hello", "welcome to our Server"],
-    "log" : "1",
-    "prefix" : "-",
-    "token" : "your bot token",
-    "meaning_of_life" : 42,
-    "passwords_array" : ["please", "don't", "hack", "me", "or", "i", "will", "hack", "you!", "LOLOLO"],
-    "secret_passcodes" : {
-    "bank" : 1234,"home" : 4321
+    "token": "NTM0NzA0NzA5MTU2NDcwNzg0.XNwitg.joQWe4dWKgZnwIjyCVWnF2ALnxY",
+    "adminID": "425679093842051083",
+    "meAlias": "r4nchy",
+    "Testube": {
+        "online": 448
     },
-    "Testube":{"online":0}
+    "prefix": "-",
+    "welcome": [
+        "Hello",
+        "welcome to our Server Krux Community"
+    ],
+    "server": {
+        "name": "Krux Community",
+        "description": "This Server is for uniting people through Music",
+        "other": ""
+    },
+    "news": {
+        "apikey": "e2364d9cbd2b49eabf55ffed4fc447f5",
+        "link": "https://newsapi.org/v2/top-headlines?country="
+    },
+    "bot": {
+        "image": "https://i.imgur.com/HGqUWtL.png",
+        "rip": "https://i.imgur.com/w3duR07.png",
+        "cat": "http://aws.random.cat/meow",
+        "cat0": "https://i.imgur.com/O038rRQ.png",
+        "dog": "https://random.dog/woof.json",
+        "dog0": "https://i.imgur.com/EVNxo6B.png"
+    },
+    "xkcd": {
+        "l1": "https://xkcd.com",
+        "l2": "info.0.json"
+    }
 }

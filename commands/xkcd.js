@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
     if(!number && !detail /*&& number == 'help'*/) {
         let {body} = await superagent
         .get(`${config.xkcd.l1}/${config.xkcd.l2}`);
-    
+        console.log(`${config.xkcd.l1}/${config.xkcd.l2}`);
         if(body.transcript) {
             var transcriptAvailable = 'Transcript Available';
         } else {
