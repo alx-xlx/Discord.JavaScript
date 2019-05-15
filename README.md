@@ -6,6 +6,7 @@
 1. Introducing Yourself to the basics of :
 
 [Bot_Development](JavaScript_+_nodejs)      \\Normal Bot + [Music] Bot.
+[APIs](So_much_to_add)      \\Explore
 [DataBase](mongoDB_+_mySQL_+_bycrpt)     \\Storing [Bot] and [User] Data with Encryption.
 [WebPage_for_Bot](HTML_+_CSS)       \\Web Development Simply Basics.
 [FrameWork](Vue)        \\Intensive.
