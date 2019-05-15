@@ -1,6 +1,0 @@
-install forever first
-forever start janbot.js
-forever stop janbot.js
-
-
-/testing
