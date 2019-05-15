@@ -104,6 +104,6 @@ function multiplyCommand(arguments, receivedMessage) {
     })
     receivedMessage.channel.send("Product of" + arguments + "multiplied together is " + product.toString() )
 }
-bot_secret_token = "NTM0NzA0NzA5MTU2NDcwNzg0.Dx-e7w.7N7ba8ymxgmCqPmqwLMORoI1X0w"
+bot_secret_token = "DELETE THIS AND COPY PASTE YOUR TOKEN KEY HERE"
 
 client.login(bot_secret_token)
