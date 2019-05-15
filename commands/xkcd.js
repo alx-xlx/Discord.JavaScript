@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const superagent = require('superagent');
+const config = require('../config.json')
+
 module.exports.run = async (bot, message, args) => {                
     let messageArray = message.content.split(' ');
     let number = messageArray[1];
@@ -7,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     number = parseInt(number);
     if(message.content == '-xkcd help') {
         let {body} = await superagent
-        .get('https://xkcd.com/info.0.json');
+        .get(`${config.xkcd.l1}/${config.xkcd.l2}`);
         message.channel.send('**xkcd Commands**```\n'+
         '-xkcd [To View current xkcd]\n'+
         `-xkcd <PostNumber> [Ex. -xkcd 614] \n1 < PostNumber < ${body.num}\n`+
@@ -15,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if(number != 'help' && !detail) {
         let {body} = await superagent
-        .get(`https://xkcd.com/${number}/info.0.json`);
+        .get(`${config.xkcd.l1}/${number}/${config.xkcd.l2}`);
         if(body.transcript) {
             var transcriptAvailable = 'Transcript Available';
         } else {
@@ -31,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if(number && detail == 'd') {
         let {body} = await superagent
-        .get(`https://xkcd.com/${number}/info.0.json`);
+        .get(`${config.xkcd.l1}/${number}/${config.xkcd.l2}`);
     
         if(body.transcript) {
             message.channel.send(`**${body.title} | #${body.num}**\n` + '**Transcript**```css\n'+ `${body.transcript}`+'```');
@@ -42,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if(!number && !detail /*&& number == 'help'*/) {
         let {body} = await superagent
-        .get('https://xkcd.com/info.0.json');
+        .get(`${config.xkcd.l1}/${config.xkcd.l2}`);
     
         if(body.transcript) {
             var transcriptAvailable = 'Transcript Available';

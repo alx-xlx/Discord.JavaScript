@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const config = require('../config.json')
 //#1 exported "bot,message,args"
 module.exports.run = async (bot, message, args) => {                                
     let boticon = bot.user.displayAvatarURL;
@@ -7,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     let botembed = new Discord.RichEmbed()
     .setDescription("**I am a Discord Bot !!**\n**I am Currently being Developed by *r4nchy* (For Fun ofc)**")
     .setTitle("**TesTube**")
-    .setURL("https://i.imgur.com/HGqUWtL.png")
+    .setURL(`${config.bot.image}`)
     .setThumbnail(boticon)                                  //This lin prints pic in small way
     .setColor("#9052df")
     .addField("Version", `*v0.1 (03/04/2019)*`)

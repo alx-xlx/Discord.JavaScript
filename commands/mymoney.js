@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const config = require("../config.json");
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/Coins', {
     useNewUrlParser: true
@@ -8,7 +9,7 @@ const Money = require('../module/money.js');
 
 module.exports.run = async (bot, message, args) => {
     await message.delete();
-    if (message.author.id !== '425679093842051083')  return;
+    //if (message.author.id !== config.adminID) return;
 
     Money.findOne({
         userID: message.author.id,

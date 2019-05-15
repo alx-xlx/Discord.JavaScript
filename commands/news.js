@@ -1,14 +1,15 @@
 const Discord = require("discord.js");
 const superagent = require("superagent");
+const config = require('../config.json')
 module.exports.run = async (bot, message, args) => {
     let {body} = await superagent
-    .get('https://newsapi.org/v2/top-headlines?country=in&apiKey=e2364d9cbd2b49eabf55ffed4fc447f5');
+    .get(`${config.link}in&apiKey=${config.apikey}`);
 
     let messageArray = message.content.split(' ');
     let countryID = messageArray[1];
     if(countryID) {
         let {body} = await superagent
-        .get(`https://newsapi.org/v2/top-headlines?country=${countryID}&apiKey=e2364d9cbd2b49eabf55ffed4fc447f5`);
+        .get(`${config.link}${countryID}&apiKey=${config.apikey}`);
         let newsembed = new Discord.RichEmbed()
         .setTitle(`**Top 10 News From ${countryID}**`)
         .setColor('#ffffff')

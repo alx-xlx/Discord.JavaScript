@@ -5,7 +5,7 @@ const config = require("./config.json");
 bot.login(config.token);
 
 bot.on('ready', ()=> {
-    console.log("Hello there");
+    console.log(`${config.welcome[1]}`);
     
 })
 
