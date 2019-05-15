@@ -47,7 +47,7 @@ fs.readdir("./commands", (err, files) => {                                  //Re
 
 bot.on("ready", async () =>  {
     console.log(`\x1b[1m\x1b[34mTest\x1b[31mube\x1b[31m\x1b[0m\x1b[1m is\x1b[32m online!\x1b[0m`);                        //Logs on the console window
-    var botChannel = bot.channels.get("574260217601064980");
+    var botChannel = bot.channels.get(`${config._CH}`);
     let configs = JSON.parse(fs.readFileSync("./config.json"));
     var number = configs.Testube.online;
     var nextnumber = number;
@@ -392,7 +392,7 @@ const commands = {
     'add': (message) => {
         let url = message.content.split(' ')[1];
         if(url == '' || url === undefined) {
-            message.channel.sendMessage(`You must add a Youtub Link OR ID after ${config.prefix}add`);
+            message.channel.sendMessage(`You must add a Youtube Link OR ID after ${config.prefix}add`);
         }
         Youtube.getInfo(url, (err,info) => {
             if(!queue.hasOwnProperty(message.guild.id)) {
