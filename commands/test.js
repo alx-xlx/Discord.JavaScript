@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const config = require('../config.json')
 
 module.exports.run = async (bot, message, args) => {                                //#1 exported "bot,message,args"
-    console.log("Command Handler Tester Loaded");
     let serverembed = new Discord.RichEmbed()
     .setTitle(`${config.server.name}`)
     .setDescription(`${config.server.description}`)
