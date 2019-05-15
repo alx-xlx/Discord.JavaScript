@@ -1,12 +1,33 @@
 const Discord = require('discord.js');
 const superagent = require('superagent');
-const config = require('../config.json')
+const config = require('../config.json');
 
 module.exports.run = async (bot, message, args) => {                
     let messageArray = message.content.split(' ');
     let number = messageArray[1];
     let detail = messageArray[2];
     number = parseInt(number);
+
+    if(message.content == '-xkcd' /*&& !number && !detail*/) {
+        console.log(`${config.xkcd.l1}/${config.xkcd.l2}`);
+        // let {body} = await superagent
+        // .get(`https://xkcd.com/info.0.json`);
+        
+        // if(body.transcript) {
+        //     var transcriptAvailable = 'Transcript Available';
+        // } else {
+        //     var transcriptAvailable = 'Transcript Not Available';
+        // }
+    
+        // let xkcdembed = new Discord.RichEmbed()
+        // .setTitle(`${body.title} | #${body.num}`)
+        // .setDescription(body.alt)
+        // .setColor('#f47142')
+        // .setFooter(`Uploaded on : ${body.day}-${body.month}-${body.year} || ${transcriptAvailable} ||`, 'https://i.imgur.com/B0l6ta6.png')
+        // .setImage(body.img);
+        // message.channel.send(xkcdembed);
+    }
+
     if(message.content == '-xkcd help') {
         let {body} = await superagent
         .get(`${config.xkcd.l1}/${config.xkcd.l2}`);
@@ -42,25 +63,7 @@ module.exports.run = async (bot, message, args) => {
         }
     
     }
-    if(messageArray[0] && !number && !detail) {
-        console.log(`${config.xkcd.l1}/${config.xkcd.l2}`);
-        // let {body} = await superagent
-        // .get(`https://xkcd.com/info.0.json`);
-        
-        // if(body.transcript) {
-        //     var transcriptAvailable = 'Transcript Available';
-        // } else {
-        //     var transcriptAvailable = 'Transcript Not Available';
-        // }
-    
-        // let xkcdembed = new Discord.RichEmbed()
-        // .setTitle(`${body.title} | #${body.num}`)
-        // .setDescription(body.alt)
-        // .setColor('#f47142')
-        // .setFooter(`Uploaded on : ${body.day}-${body.month}-${body.year} || ${transcriptAvailable} ||`, 'https://i.imgur.com/B0l6ta6.png')
-        // .setImage(body.img);
-        // message.channel.send(xkcdembed);
-    }
+
 }
 module.exports.help = {
     name: "xkcd"
