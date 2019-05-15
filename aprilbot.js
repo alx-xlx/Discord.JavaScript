@@ -56,8 +56,8 @@ bot.on("ready", async () =>  {
     let readyembed = new Discord.RichEmbed()
     .addField("**Testube is ```ONLINE``` for** " + nextnumber + suffix + " **time !!**","Happy Devving")
     .setColor("#15f153")
-    .setFooter('Will Self Destruct in 20sec',"https://i.imgur.com/HGqUWtL.png")
-    .setThumbnail("https://i.imgur.com/HGqUWtL.png");
+    .setFooter('Will Self Destruct in 20sec',`${config.bot.image}`)
+    .setThumbnail(`${config.bot.image}`);
     configs[bot.user.username] = {
         online : nextnumber
     };
