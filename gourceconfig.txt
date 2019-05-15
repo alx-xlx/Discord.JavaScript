@@ -1,6 +1,8 @@
-[display]
+[Display]
 fullscreen=true
 multi-sampling=true
+
+
 
 highlight-colour = FFFFFF
 
