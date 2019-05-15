@@ -157,7 +157,7 @@ bot.on("message" , async message => {
         if(mp4 != -1) {
             let mp4embed1 = new Discord.RichEmbed()
             .addField(':cat2:', 'feels bad man\ntry again man')
-            .setThumbnail('https://i.imgur.com/O038rRQ.png')
+            .setThumbnail(`${config.bot.cat0}`)
             .setColor('#f47142');
             message.channel.send(mp4embed1);
         }
@@ -170,13 +170,13 @@ bot.on("message" , async message => {
 
     if(messageArray[0] == 'pls' && messageArray[1] =='dog') {
         let {body} = await superagent
-        .get('https://random.dog/woof.json');
+        .get(`${config.bot.dog}`);
         let linky = body.url;
         let mp4 = linky.search('.mp4');
         if(mp4 != -1) {
             let mp4embed = new Discord.RichEmbed()
             .addField(':dog2:', 'feels bad man\ntry again man')
-            .setThumbnail('https://i.imgur.com/EVNxo6B.png')
+            .setThumbnail(`${config.bot.dog0}`)
             .setColor('#f47142');
             message.channel.send(mp4embed);
         } else {
