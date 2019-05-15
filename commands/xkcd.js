@@ -13,23 +13,22 @@ module.exports.run = async (bot, message, args) => {
         number = parseInt(number);
     
         if(message.content == '-xkcd' /*&& !number && !detail*/) {
-            console.log(`${config.xkcd.l1}/${config.xkcd.l2}`);
-            // let {body} = await superagent
-            // .get(`https://xkcd.com/info.0.json`);
+            let {body} = await superagent
+            .get(`${config.xkcd.l1}/${config.xkcd.l2}`);
             
-            // if(body.transcript) {
-            //     var transcriptAvailable = 'Transcript Available';
-            // } else {
-            //     var transcriptAvailable = 'Transcript Not Available';
-            // }
+            if(body.transcript) {
+                var transcriptAvailable = 'Transcript Available';
+            } else {
+                var transcriptAvailable = 'Transcript Not Available';
+            }
         
-            // let xkcdembed = new Discord.RichEmbed()
-            // .setTitle(`${body.title} | #${body.num}`)
-            // .setDescription(body.alt)
-            // .setColor('#f47142')
-            // .setFooter(`Uploaded on : ${body.day}-${body.month}-${body.year} || ${transcriptAvailable} ||`, 'https://i.imgur.com/B0l6ta6.png')
-            // .setImage(body.img);
-            // message.channel.send(xkcdembed);
+            let xkcdembed = new Discord.RichEmbed()
+            .setTitle(`${body.title} | #${body.num}`)
+            .setDescription(body.alt)
+            .setColor('#f47142')
+            .setFooter(`Uploaded on : ${body.day}-${body.month}-${body.year} || ${transcriptAvailable} ||`, 'https://i.imgur.com/B0l6ta6.png')
+            .setImage(body.img);
+            message.channel.send(xkcdembed);
         }
     
         if(message.content == '-xkcd help') {
@@ -40,7 +39,7 @@ module.exports.run = async (bot, message, args) => {
             `-xkcd <PostNumber> [Ex. -xkcd 614] \n1 < PostNumber < ${body.num}\n`+
             '-xkcd <PostNumber> d [To View Transcript, Not all Post have transcript]'+'```');
         }
-        if(number != 'help' && !detail) {
+        if(number && number != 'help' && !detail) {
             let {body} = await superagent
             .get(`${config.xkcd.l1}/${number}/${config.xkcd.l2}`);
             if(body.transcript) {
