@@ -2,9 +2,10 @@
 config.json
 
 # Ignore folders
+AWS_Hosting/
 /node_modules/
 
-/AWS_Hosting/
+
 
 
 # Ignore all .exe files
