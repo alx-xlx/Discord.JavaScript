@@ -51,8 +51,8 @@ bot.on("ready", async () =>  {
     let readyembed = new Discord.RichEmbed()
     .addField("**Testube is ```ONLINE``` for** " + nextnumber + suffix + " **time !!**","Happy Devving")
     .setColor("#15f153")
-    .setFooter('Will Self Destruct in 20sec',"https://i.imgur.com/HGqUWtL.png")
-    .setThumbnail("https://i.imgur.com/HGqUWtL.png");
+    .setFooter('Will Self Destruct in 20sec',`${config.bot.image}`)
+    .setThumbnail(`${config.bot.image}`);
     configs[bot.user.username] = {
         online : nextnumber
     };
@@ -104,7 +104,7 @@ bot.on("message" , async message => {
     }
 
     if(cmd == `${p}pic`) {
-        const attachment = new Attachment ('https://i.imgur.com/w3duR07.png');    // Sending Attachment using URL
+        //const attachment = new Attachment ('https://i.imgur.com/HELLO.png');    // Sending Attachment using URL
         //const attachment1 = new Attachment ('./files/me.png')                           //Sending attachment from local
         message.channel.send(attachment);
         //message.channel.send(attachment1);
