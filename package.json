@@ -1,0 +1,27 @@
+{
+  "name": "discord.javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "maybot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "config.json",
+      "files/*.json"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^4.0.0",
+    "mongoose": "^5.5.7",
+    "opusscript": "0.0.6",
+    "sqlite": "^3.0.3",
+    "superagent": "^5.0.4",
+    "ytdl-core": "^0.29.1"
+  }
+}

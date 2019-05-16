@@ -1,0 +1,13 @@
+# Ignore File Name `README.txt`
+config.json
+/files/configmaster.json
+
+# Ignore folders
+
+node_modules/
+
+AWS.Hosting/*
+
+
+# Ignore all .exe files
+#    *.exe
