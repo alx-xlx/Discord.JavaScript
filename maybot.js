@@ -289,6 +289,7 @@ bot.on("message" , async message => {
 
 
 
+
 }); //BOT.ON(MESSAGE)
 
 bot.on('guildMemberAdd', async member => {
