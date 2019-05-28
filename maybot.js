@@ -286,6 +286,13 @@ bot.on("message" , async message => {
 
 
 
+    if(cmd ==`${p}music help`) {
+        let musichelpembed = new Discord.RichEmbed()
+        .setTitle('Music Help Commands')
+        .addField('-join', '```diff\n-join```')
+        .setColor('#f47142');
+        message.channel.send(musichelpembed);
+    }
 
 
 
@@ -308,7 +315,6 @@ bot.on('channelDelete', async channel => {
     let sChannel = channel.guild.channels.find('name', 'logs');
     sChannel.send(`**${channel.name}** Channel has been deleted`);
 });
-
 
 
 
@@ -419,7 +425,7 @@ const commands = {
         });
         message.channel.sendMessage(`__**${message.guild.name}'s Music Queue:**__ Current** ${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')} \n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
     },
-    'help': (message) => {
+    'music help': (message) => {
         let tosend = ['```xl', config.prefix 
         + 'join : "Join Voice channel of msg sender"',	config.prefix 
         + 'add : "Add a valid youtube link to the queue"', config.prefix 
@@ -431,9 +437,21 @@ const commands = {
         + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"',	'```'];
         message.channel.sendMessage(tosend.join('\n'));
     },
-    'reboot': (message) => {
+    'reboot': async (message) => {
         if(message.author.id == config.adminID) {
+            await message.channel.send(`Uptime : ${process.uptime()}`);
+            await message.channel.send(`${process.connected}`)
             process.exit(); //Requires a node module like Forever to work.
+
+        }
+    },
+    'process': async (message) => {
+        if(message.author.id == config.adminID) {
+            await message.channel.send(`Uptime : ${process.uptime()}`);
+            await message.channel.send(`${process.connected} \n
+            ${process.cpuUsage()} \n
+            ${process.memoryUsage()}
+            `)
         }
     }
 }; //const commands END OF LINE

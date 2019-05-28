@@ -1,2 +1,2 @@
-nodemon
+forever stop foreverr.js
 pause
