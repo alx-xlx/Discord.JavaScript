@@ -448,10 +448,7 @@ const commands = {
     'process': async (message) => {
         if(message.author.id == config.adminID) {
             await message.channel.send(`Uptime : ${process.uptime()}`);
-            await message.channel.send(`${process.connected} \n
-            ${process.cpuUsage()} \n
-            ${process.memoryUsage()}
-            `)
+            await message.channel.send(`${process.connected} // ${process.cpuUsage()} // ${process.memoryUsage()}`)
         }
     }
 }; //const commands END OF LINE
