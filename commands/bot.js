@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .setURL(`${config.bot.image}`)
     .setThumbnail(boticon)                                  //This lin prints pic in small way
     .setColor("#9052df")
-    .addField(`Version`, `*${config.Testube.version} (03/04/2019)*`)
+    .addField(`Version `,`*${config.bot.version}*         \`\`(03/04/2019)\`\``)
     .addField("Created on:", bot.user.createdAt);
     message.channel.send(botembed)
     .then(msg => {
@@ -25,5 +25,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "bott"
+    name: "bot"
 }

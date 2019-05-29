@@ -6,6 +6,7 @@ const Youtube = require('ytdl-core');
 const fs = require('fs');
 const superagent = require('superagent');
 const sql = require('sqlite');
+const DateTime = require('date-and-time');
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/Coins", {
     useNewUrlParser: true
@@ -49,6 +50,13 @@ bot.on("ready", async () =>  {
     console.log(`\x1b[1m\x1b[34mTest\x1b[31mube\x1b[31m\x1b[0m\x1b[1m is\x1b[32m online!\x1b[0m`);                        //Logs on the console window
     var botChannel = bot.channels.get(`${config._CH}`);
     let configs = JSON.parse(fs.readFileSync("./config.json"));
+
+    let now = new Date();
+    var ist = now.toString();
+    var istlength = ist.length;
+    var newist = ist.substring(0,istlength-25);
+    var utc = now.toUTCString();
+    console.log(`${ist}\n${newist}\n${utc}`);
     var number = configs.Testube.online;
     var nextnumber = number;
     nextnumber++;
@@ -447,8 +455,16 @@ const commands = {
     },
     'process': async (message) => {
         if(message.author.id == config.adminID) {
-            await message.channel.send(`Uptime : ${process.uptime()}`);
-            await message.channel.send(`${process.connected} // ${process.cpuUsage()} // ${process.memoryUsage()}`)
+            var uptime = process.uptime().toFixed(0);
+            if(uptime < 60) {
+                await message.channel.send(`**Uptime :** \`\`${uptime}\`\``);
+            } else if(uptime >= 60 && uptime < 3600) {
+                await message.channel.send(`**Uptime :** \`\`${(uptime/60).toFixed(0)}min ${(uptime%60).toFixed(0)}sec\`\``);
+            } else if(uptime >= 3600) {
+                await message.channel.send(`**Uptime :** \`\`${(uptime/3600).toFixed(0)}hr ${(uptime%3600).toFixed(0)}min\`\``)
+            }
+            if(uptime)
+            console.log(`${process.connected} // ${process.cpuUsage().system} // ${process.cpuUsage().user} // ${process.versions.node}`);
         }
     }
 }; //const commands END OF LINE
