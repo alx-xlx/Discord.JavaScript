@@ -52,11 +52,13 @@ bot.on("ready", async () =>  {
     let configs = JSON.parse(fs.readFileSync("./config.json"));
 
     let now = new Date();
-    var ist = now.toString();
-    var istlength = ist.length;
-    var newist = ist.substring(0,istlength-25);
-    var utc = now.toUTCString();
-    console.log(`${ist}\n${newist}\n${utc}`);
+    var rawist = now.toString();
+    var istlength = rawist.length;
+    var ist = rawist.substring(0,istlength-27);
+    var utc = now.toUTCString().replace(',',"");
+    console.log(`${ist} +05:30 IST\n${utc} +00:00 UTC`);
+    var lastist = config.Testube.istON;
+    var Lastutc = config.Testube.utcON;
     var number = configs.Testube.online;
     var nextnumber = number;
     nextnumber++;
@@ -76,12 +78,16 @@ bot.on("ready", async () =>  {
         var suffix = "st";
     }
     let readyembed = new Discord.RichEmbed()
-    .addField("**Testube is ```ONLINE``` for** " + nextnumber + suffix + " **time !!**","Happy Devving")
+    .addField(`**Testube is** \`\`\`\c\s\s\n${lastist}\`\`\` **for** ` + nextnumber + suffix + " **time !!**","Happy Devving")
     .setColor("#15f153")
+    .addField("Last Online on IST:", `\`\`\`\c\s\s\n${lastist}\`\`\``)
+    .addField("Last Online on UTC:", `\`\`${Lastutc}\`\``)
     .setFooter('Will Self Destruct in 20sec',`${config.bot.image}`)
     .setThumbnail(`${config.bot.image}`);
     configs[bot.user.username] = {
-        online : nextnumber
+        online : nextnumber,
+        istON : ist + ' +05:30 IST',
+        utcON : utc + ' +00:00 UTC'
     };
     fs.writeFile("./config.json", JSON.stringify(configs,null,4),(err) => {
         if(err) console.log(err); return;
