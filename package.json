@@ -18,7 +18,7 @@
     "discord.js": "^11.4.2",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
-    "mongoose": "^5.5.7",
+    "mongoose": "^5.7.5",
     "opusscript": "0.0.6",
     "sqlite": "^3.0.3",
     "superagent": "^5.0.4",
